@@ -57,9 +57,14 @@ class Login extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 240),
+                    child: TextButton(onPressed:(){},child:Text("forgot password?",style: TextStyle(color: Colors.white))),
+                  )
                 ],
               ),
             ),
+          
           ),
         ],
       ),
