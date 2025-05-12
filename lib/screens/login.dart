@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/services/authservices.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController emailController =TextEditingController();
+  TextEditingController passwordController =TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +39,7 @@ class Login extends StatelessWidget {
                   SizedBox(height: 16),
 
                   TextField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         onPressed: () {},
@@ -47,6 +57,7 @@ class Login extends StatelessWidget {
                   SizedBox(height: 16),
 
                   TextField(
+                    controller: passwordController,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         onPressed: () {},
@@ -63,7 +74,9 @@ class Login extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 240),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/log');
+                      },
                       child: Text(
                         "forgot password?",
                         style: TextStyle(color: Colors.white),
@@ -75,18 +88,17 @@ class Login extends StatelessWidget {
                     height: 50,
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {signin(email: emailController.text, password: passwordController.text, context: context);},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.yellow,
+                        backgroundColor: Colors.amber,
                         foregroundColor: Colors.black,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                       child: Text("login"),
                     ),
                   ),
-
                   SizedBox(height: 16),
                   Row(
                     children: [
@@ -113,10 +125,20 @@ class Login extends StatelessWidget {
                     ],
                   ),
 
-                  SizedBox(height: 500),
-                  Row(children: [loginfun("assets/facebook.jpg"), loginfun("assets/Aadhaar.png"), loginfun("google.png")]),
+                  SizedBox(height: 50),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 90),
+                    child: Row(
+                      children: [
+                        loginfun("assets/facebook.jpg"),
+                        loginfun("assets/Aadhaar.png"),
+                        loginfun("google.png"),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 420),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {Navigator.pushNamed(context, '/register');},
                     child: Text(
                       "Don't have an account register now",
                       style: TextStyle(
@@ -134,17 +156,20 @@ class Login extends StatelessWidget {
   }
 
   Widget loginfun(String imagepath) {
-    return Container(
-      height: 50,
-      width: 50,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        border: Border.all(color: Colors.amber),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(12),
-        child: Image.asset(imagepath),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 50,
+        width: 50,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          border: Border.all(color: Colors.amber),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(12),
+          child: Image.asset(imagepath),
+        ),
       ),
     );
   }

@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/services/authservices.dart';
 
-class Register extends StatelessWidget {
+class Register extends StatefulWidget {
   const Register({super.key});
 
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
+  TextEditingController emailController =TextEditingController();
+  TextEditingController passwordController =TextEditingController();
+  TextEditingController usernameController =TextEditingController();
+  TextEditingController confirmController =TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +35,7 @@ class Register extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Hello Register",
+                    "Hello !,Register",
                     style: TextStyle(
                       color: const Color.fromARGB(255, 255, 255, 255),
                       fontSize: 23,
@@ -42,6 +52,7 @@ class Register extends StatelessWidget {
                   ),
                   SizedBox(height: 25),
                   TextField(
+                    controller:usernameController ,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         onPressed: () {},
@@ -57,6 +68,7 @@ class Register extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   TextField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         onPressed: () {},
@@ -72,6 +84,7 @@ class Register extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   TextField(
+                    controller: passwordController,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         onPressed: () {},
@@ -87,6 +100,7 @@ class Register extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   TextField(
+                    controller: confirmController,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         onPressed: () {},
@@ -133,7 +147,12 @@ class Register extends StatelessWidget {
                     height: 32,
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {signup(
+                        email: emailController.text,
+                         password: passwordController.text,
+                          confrmpass: confirmController.text,
+                           username: usernameController.text,
+                            context: context);},
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.black,
